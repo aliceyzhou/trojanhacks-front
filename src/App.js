@@ -41,7 +41,7 @@ const App = () => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL);
     // Listens for incoming messages
     socketRef.current.on(GET_CODE, (data) => {
-      console.log(data);
+      setp2code(data);
       //setMessages((messages) => [...messages, incomingMessage]);
     });
 
@@ -56,7 +56,7 @@ const App = () => {
     <div className='App'>
       <div className='problem'>The problem placeholder text here</div>
 
-      <div className='container'>
+      <div id='left' className='container'>
         <div className='player'>
           <select>
             <option value='Python'>Python</option>
@@ -67,6 +67,7 @@ const App = () => {
             className='code'
             placeholder='begin coding here...'
             onChange={getP1Code}
+            // value={p2code}
           ></textarea>
           <button class='submit' onClick={pressSubmit1}>
             Submit!
@@ -84,6 +85,7 @@ const App = () => {
             className='code'
             placeholder='begin coding here...'
             onChange={getP2Code}
+            value={p2code}
           ></textarea>
           <button class='submit' onClick={pressSubmit2}>
             Submit!
