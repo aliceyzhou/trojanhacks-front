@@ -26,6 +26,7 @@ const App = () => {
   };
   const getP1Code = (e) => {
     setp1code(e.target.value);
+    sendCode(e.target.value);
   };
   const pressSubmit2 = () => {
     setp2code('pressed 2');
@@ -41,7 +42,7 @@ const App = () => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL);
     // Listens for incoming messages
     socketRef.current.on(GET_CODE, (data) => {
-      setp2code(data);
+      setp2code(data.body);
       //setMessages((messages) => [...messages, incomingMessage]);
     });
 
