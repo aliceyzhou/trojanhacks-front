@@ -22,7 +22,7 @@ const App = () => {
 
   const pressSubmit1 = () => {
     setp1code('pressed 1');
-    sendCode('hello');
+    sendCode(p1code);
   };
   const getP1Code = (e) => {
     setp1code(e.target.value);
