@@ -42,7 +42,7 @@ const App = () => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL);
     // Listens for incoming messages
     socketRef.current.on(GET_CODE, (data) => {
-      if (socketRef.current.id != data.senderId) {
+      if (socketRef.current.id !== data.senderId) {
         setp2code(data.body);
       }
 
