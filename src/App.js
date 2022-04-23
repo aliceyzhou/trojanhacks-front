@@ -11,6 +11,8 @@ const App = () => {
   const [p1code, setp1code] = useState('hello world');
   const [p2code, setp2code] = useState('');
 
+  console.log(p1code + p2code);
+
   const sendCode = (messageBody) => {
     socketRef.current.emit(GET_CODE, {
       body: messageBody,
