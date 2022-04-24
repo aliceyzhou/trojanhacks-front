@@ -79,7 +79,7 @@ const App = () => {
     //we need to RECEIVE bugs
     socketRef.current.on(SEND_BUG, (data) => {
       console.log('sending bug');
-      if (socketRef.current.id == data.senderId) {
+      if (socketRef.current.id === data.senderId) {
         setp2code(data.code);
       } else {
         setp1code(data.code);
@@ -90,7 +90,7 @@ const App = () => {
       console.log('sending blind');
       console.log('can blind: ' + canBlind);
 
-      if (socketRef.current.id == data.senderId) {
+      if (socketRef.current.id === data.senderId) {
         set2blind(true);
       } else {
         set1blind(true);
@@ -101,7 +101,7 @@ const App = () => {
 
     socketRef.current.on(SEND_FREEZE, (data) => {
       console.log('sending freeze');
-      if (socketRef.current.id == data.senderId) {
+      if (socketRef.current.id === data.senderId) {
         setp2freeze(true);
       } else {
         setp1freeze(true);
@@ -117,9 +117,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (blindReset == 0 && !canBlind) {
+    if (blindReset === 0 && !canBlind) {
       setCanBlind(true);
-    } else if (blindReset == 45) {
+    } else if (blindReset === 45) {
       setCanBlind(false);
     }
   }, [blindReset]);
@@ -166,9 +166,9 @@ const App = () => {
   }, [blindReset]);
 
   useEffect(() => {
-    if (freezeReset == 0 && !canFreeze) {
+    if (freezeReset === 0 && !canFreeze) {
       setCanFreeze(true);
-    } else if (freezeReset == 150) {
+    } else if (freezeReset === 150) {
       setCanFreeze(false);
     }
   }, [freezeReset]);
