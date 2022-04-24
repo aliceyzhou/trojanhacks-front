@@ -1,9 +1,15 @@
+body {
+  background-color: #1e232b;
+}
+
 .problem {
   width: 1000px;
   padding: 20px;
   border: 1px solid black;
   text-align: center;
   margin: 10px auto;
+  background-color: #2e333b;
+  color: white;
 }
 
 .container {
@@ -17,13 +23,52 @@
   padding: 50px;
 }
 
+#player2 {
+  /* margin: 30px 0px 0px 0px; */
+}
+
+p {
+  color: white;
+  margin: 15px 0px;
+}
+
 .code {
-  height: 800px;
+  height: 400px;
   width: 600px;
   margin: 0px;
+  font-size: 18px;
+  background-color: #2e333b;
 }
 
 .output {
   width: 600px;
-  height: 200px;
+  height: 50px;
+  background-color: #2e333b;
+  text-align: center;
+  color: white;
+  vertical-align: middle;
+  padding: 20px 0px 0px;
+}
+
+#winner {
+  color: lightcoral;
+  font-size: 100px;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.winnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+button {
+  padding: 10px 25px;
+  margin: 0px 25px 10px;
+  background-color: #bdbdda;
+  border-radius: 10px;
 }

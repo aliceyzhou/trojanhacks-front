@@ -10,10 +10,23 @@ const App = () => {
   const SEND_BUG = 'sendBug';
   const SEND_BLIND = 'sendBlind';
   const SEND_FREEZE = 'sendFreeze';
-  const SOCKET_SERVER_URL = 'https://trojanhacks.herokuapp.com/'; //'http://localhost:4000';
+  const SOCKET_SERVER_URL = 'http://localhost:4000';
 
-  const [p1code, setp1code] = useState('');
-  const [p2code, setp2code] = useState('');
+  const problems = [
+    'Find the sum of an array',
+    'Find the nth fibonacci',
+    'Reverse an array',
+  ];
+  const problemPlaceholder = [
+    'def sumList(array): \t\n pass',
+    'def fib(n): \t\n pass',
+    'def reverseList(array): \t\n pass',
+  ];
+  const [tracker, setTracker] = useState(0);
+  const [p1output, setp1output] = useState('');
+
+  const [p1code, setp1code] = useState(problemPlaceholder[tracker]);
+  const [p2code, setp2code] = useState(problemPlaceholder[tracker]);
   const [p1blind, set1blind] = useState(false);
   const [p2blind, set2blind] = useState(false);
   const [seconds, setSeconds] = useState(0);
@@ -33,10 +46,20 @@ const App = () => {
   };
 
   const pressSubmit1 = () => {
+    // send stuff to backend
     axios
-      .post('https://trojanhacks.herokuapp.com/', { code: p1code })
+      .post(SOCKET_SERVER_URL, { code: p1code, problem: tracker })
       .then((response) => {
-        console.log(response);
+        if (!response.data.answer) {
+          setp1output('You got it wrong :(');
+        } else {
+          setTracker(tracker + 1);
+          setp1code(problemPlaceholder[tracker + 1]);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if (response.data.error) {
+          setp1output(response.data.error);
+        }
       });
   };
   const getP1Code = (e) => {
@@ -217,16 +240,21 @@ const App = () => {
     return () => clearInterval(interval);
   }, [freezeReset]);
 
-  return (
+  return tracker == 3 ? (
+    <div class='winnerContainer'>
+      <div id='winner'>🎉 🎉 Winner!! 🎉 🎉</div>
+      <img src='https://firesidefurniture.com/wdpr/wp-content/uploads/fireworks-gif.gif' />
+    </div>
+  ) : (
     <div className='App'>
-      <div className='problem'>The problem placeholder text here</div>
+      <div className='problem'>Problem: {problems[tracker]}</div>
 
       <div id='left' className='container'>
         <div className='player'>
-          <select>
+          {/* <select>
             <option value='Python'>Python</option>
             <option value='C++'>C++</option>
-          </select>
+          </select> */}
 
           <button class='feature' id='bug' onClick={sendBug1}>
             BUG
@@ -250,39 +278,37 @@ const App = () => {
             FREEZE
           </button>
 
+          <button class='submit' onClick={pressSubmit1}>
+            SUBMIT!
+          </button>
+
           <textarea
             className='code'
             placeholder='begin coding here...'
             onChange={getP1Code}
             value={p1code}
             disabled={p1freeze}
-            style={{ color: p1blind ? '#FFF' : '#000' }}
+            style={{ color: p1blind ? '#000' : '#FFF' }}
           ></textarea>
-          <button class='submit' onClick={pressSubmit1}>
-            Submit!
-          </button>
 
-          <textarea className='output' placeholder='output'></textarea>
+          <div className='output'>{p1output}</div>
         </div>
 
         <div className='player'>
-          <select>
+          {/* <select>
             <option value='Python'>Python</option>
             <option value='C++'>C++</option>
-          </select>
+          </select> */}
+          <p> PLAYER 2: </p>
           <textarea
             className='code'
             placeholder='begin coding here...'
             onChange={getP2Code}
             value={p2code}
             disabled={p2freeze}
-            style={{ color: p2blind ? '#FFF' : '#000' }}
+            id='player2'
+            style={{ color: p2blind ? '#000' : '#FFF' }}
           ></textarea>
-          <button class='submit' onClick={pressSubmit2}>
-            Submit!
-          </button>
-
-          <textarea className='output' placeholder='output'></textarea>
         </div>
       </div>
     </div>
