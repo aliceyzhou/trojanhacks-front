@@ -88,7 +88,6 @@ const App = () => {
 
     socketRef.current.on(SEND_BLIND, (data) => {
       console.log('sending blind');
-      console.log('can blind: ' + canBlind);
 
       if (socketRef.current.id === data.senderId) {
         set2blind(true);
@@ -114,7 +113,7 @@ const App = () => {
     return () => {
       socketRef.current.disconnect();
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (blindReset === 0 && !canBlind) {
@@ -122,7 +121,7 @@ const App = () => {
     } else if (blindReset === 45) {
       setCanBlind(false);
     }
-  }, [blindReset]);
+  }, [blindReset, canBlind]);
 
   useEffect(() => {
     let interval = null;
@@ -149,7 +148,7 @@ const App = () => {
       }
     }
     return () => clearInterval(interval);
-  }, [seconds]);
+  }, [seconds, p1blind, p2blind]);
 
   useEffect(() => {
     let interval = null;
@@ -171,7 +170,7 @@ const App = () => {
     } else if (freezeReset === 150) {
       setCanFreeze(false);
     }
-  }, [freezeReset]);
+  }, [freezeReset, canFreeze]);
 
   useEffect(() => {
     let interval = null;
@@ -198,7 +197,7 @@ const App = () => {
       }
     }
     return () => clearInterval(interval);
-  }, [freezeseconds]);
+  }, [freezeseconds, p1freeze, p2freeze]);
 
   useEffect(() => {
     let interval = null;
