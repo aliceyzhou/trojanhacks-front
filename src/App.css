@@ -7,7 +7,7 @@ body {
   padding: 20px;
   border: 1px solid black;
   text-align: center;
-  margin: 10px auto;
+  margin: 30px auto 10px;
   background-color: #2e333b;
   color: white;
 }
@@ -38,6 +38,10 @@ p {
   margin: 0px;
   font-size: 18px;
   background-color: #2e333b;
+}
+
+.code:disabled {
+  background-color: lightblue;
 }
 
 .output {
