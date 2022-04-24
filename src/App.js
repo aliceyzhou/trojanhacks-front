@@ -66,9 +66,6 @@ const App = () => {
     setp1code(e.target.value);
     sendCode(e.target.value);
   };
-  const pressSubmit2 = () => {
-    setp2code('pressed 2');
-  };
   const getP2Code = (e) => {
     setp1code(e.target.value);
   };
@@ -240,10 +237,13 @@ const App = () => {
     return () => clearInterval(interval);
   }, [freezeReset]);
 
-  return tracker == 3 ? (
+  return tracker === 3 ? (
     <div class='winnerContainer'>
       <div id='winner'>🎉 🎉 Winner!! 🎉 🎉</div>
-      <img src='https://firesidefurniture.com/wdpr/wp-content/uploads/fireworks-gif.gif' />
+      <img
+        src='https://firesidefurniture.com/wdpr/wp-content/uploads/fireworks-gif.gif'
+        alt='fireworks'
+      />
     </div>
   ) : (
     <div className='App'>
