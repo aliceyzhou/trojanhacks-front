@@ -10,7 +10,7 @@ const App = () => {
   const SEND_BUG = 'sendBug';
   const SEND_BLIND = 'sendBlind';
   const SEND_FREEZE = 'sendFreeze';
-  const SOCKET_SERVER_URL = 'http://localhost:4000';
+  const SOCKET_SERVER_URL = 'https://trojanhacks.herokuapp.com/';
 
   const problems = [
     'Find the sum of an array',
@@ -288,7 +288,7 @@ const App = () => {
             onChange={getP1Code}
             value={p1code}
             disabled={p1freeze}
-            style={{ color: p1blind ? '#000' : '#FFF' }}
+            style={{ color: p1blind ? '#2e333b' : '#FFF' }}
           ></textarea>
 
           <div className='output'>{p1output}</div>
@@ -307,7 +307,7 @@ const App = () => {
             value={p2code}
             disabled={p2freeze}
             id='player2'
-            style={{ color: p2blind ? '#000' : '#FFF' }}
+            style={{ color: p2blind ? '#2e333b' : '#FFF' }}
           ></textarea>
         </div>
       </div>
