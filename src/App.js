@@ -91,29 +91,29 @@ const App = () => {
 
       if (socketRef.current.id === data.senderId) {
         set2blind(true);
+        setBlindReset(45);
       } else {
         set1blind(true);
       }
       setSeconds(10);
-      setBlindReset(45);
     });
 
     socketRef.current.on(SEND_FREEZE, (data) => {
       console.log('sending freeze');
       if (socketRef.current.id === data.senderId) {
         setp2freeze(true);
+        setFreezeReset(150);
       } else {
         setp1freeze(true);
       }
       setFreezeSeconds(20);
-      setFreezeReset(150);
     });
     // Destroys the socket reference
     // when the connection is closed
     return () => {
       socketRef.current.disconnect();
     };
-  });
+  }, []);
 
   useEffect(() => {
     if (blindReset === 0 && !canBlind) {
