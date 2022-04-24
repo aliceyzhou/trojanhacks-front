@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import { useEffect, useRef } from 'react';
 import socketIOClient from 'socket.io-client';
@@ -32,8 +33,11 @@ const App = () => {
   };
 
   const pressSubmit1 = () => {
-    setp1code('pressed 1');
-    sendCode(p1code);
+    axios
+      .post('https://trojanhacks.herokuapp.com/', { code: p1code })
+      .then((response) => {
+        console.log(response);
+      });
   };
   const getP1Code = (e) => {
     setp1code(e.target.value);
